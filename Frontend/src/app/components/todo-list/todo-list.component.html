@@ -1,0 +1,17 @@
+<p style="text-align: center;" *ngIf="todos.length === 0">You don't have any todo</p>
+<nav *ngIf="totalPages > 1">
+    <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+            <button class="page-link" (click)="goToPage(currentPage - 1)">Previous</button>
+        </li>
+        <li class="page-item" *ngFor="let page of pagesArray" [class.active]="currentPage === page">
+            <button class="page-link" (click)="goToPage(page)">{{ page }}</button>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+            <button class="page-link" (click)="goToPage(currentPage + 1)">Next</button>
+        </li>
+    </ul>
+</nav>
+<div class="todo-list" *ngIf="todos.length >= 1">
+    <app-todo-item *ngFor="let todo of paginatedTodos" [todo]="todo" (todoChecked)="onTodoChecked()"></app-todo-item>
+</div>

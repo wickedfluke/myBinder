@@ -1,0 +1,27 @@
+<div class="todo-item" [ngClass]="{ 'completed': todo.completed, 'expired': todo.expired }">
+    <div class="checkbox-wrapper">
+        <input type="checkbox" [checked]="todo.completed" (change)="toggleCompletion()">
+    </div>
+    <div class="todo-content">
+        <span class="title">{{ todo.title }}</span>
+        <span *ngIf="todo.expired" class="expired-label">Expired</span>
+        <div class="due-date" *ngIf="todo.dueDate">Due date: {{ todo.dueDate | date }}</div>
+        <div class="createdBy">
+            <span>Created by: </span>
+            <span>{{ todo.createdBy?.fullName }}</span>
+            <img *ngIf="todo.createdBy && todo.createdBy.picture" [src]="todo.createdBy.picture" alt="Created by"
+                class="avatar">
+        </div>
+        <div class="assignedTo" *ngIf="todo.assignedTo">
+            <span>Assigned to: </span>
+            <span>{{ todo.assignedTo.fullName }}</span>
+            <img *ngIf="todo.assignedTo && todo.assignedTo.picture" [src]="todo.assignedTo.picture" alt="Assigned to"
+                class="avatar">
+        </div>
+        <br>
+        
+        <button *ngIf="!todo.assignedTo && isTodoCreatedByCurrentUser()" class="assign-button" (click)="openAssignTodoModal()">Assign</button>
+        <button *ngIf="todo.assignedTo && isTodoCreatedByCurrentUser()" class="assign-button" (click)="openAssignTodoModal()">Re-Assign</button>
+    </div>
+</div>
+        

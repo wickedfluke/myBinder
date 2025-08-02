@@ -1,0 +1,80 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col col-lg-4"></div>
+        <div class="col col-lg-4 col-md-12 border rounded p-4">
+            <form #registerForm="ngForm" (ngSubmit)="register(registerForm)" class="needs-validation" novalidate>
+
+                <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                        <label for="validationCustom01">First name</label>
+                        <input type="text" class="form-control" id="validationCustom01" placeholder="First name"
+                            name="firstName" ngModel required>
+                        <div class="invalid-feedback">
+                            Please provide a first name.
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="validationCustom02">Last name</label>
+                        <input type="text" class="form-control" id="validationCustom02" placeholder="Last name"
+                            name="lastName" ngModel required>
+                        <div class="invalid-feedback">
+                            Please provide a last name.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                        <label for="validationCustom03">Picture URL</label>
+                        <input type="text" class="form-control" id="validationCustom03" placeholder="Picture URL"
+                            name="picture" ngModel required>
+                        <div class="invalid-feedback">
+                            Please provide a valid picture URL.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                        <label for="validationCustom04">Username (Email)</label>
+                        <input type="text" class="form-control" id="validationCustom04" placeholder="Email"
+                            name="username" ngModel required>
+                        <div class="invalid-feedback">
+                            Please provide a username.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                        <label for="validationCustom05">Password</label>
+                        <input type="password" class="form-control" id="validationCustom05" placeholder="Password (at least 8 characters)"
+                            name="password" ngModel required>
+                        <div class="invalid-feedback">
+                            Please provide a password.
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="validationCustom06">Confirm Password</label>
+                        <input type="password" class="form-control" id="validationCustom06"
+                            placeholder="Confirm Password" name="confirmPassword" ngModel required>
+                        <div class="invalid-feedback">
+                            Please confirm your password.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alert alert-danger" *ngIf="registrationError">
+                    {{ registrationError }}
+                </div>
+
+                <div class="text-center">
+                    <button class="btn btn-primary btn-block mb-4" type="submit">Register</button>
+                </div>
+                <div class="text-center">
+                    <a routerLink="/login">Already registred? Sign in</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

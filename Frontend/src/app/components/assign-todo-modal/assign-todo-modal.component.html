@@ -1,0 +1,24 @@
+<div class="modal-header">
+    <h4 class="modal-title">Assign ToDo</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+    <form (ngSubmit)="onSubmit()" #form="ngForm" novalidate>
+        <div class="form-group">
+            <label for="assignedTo">Assigned to</label>
+            <select class="form-control" id="assignedTo" [(ngModel)]="selectedUserId" name="assignedTo" required #assignedTo="ngModel"
+                [ngClass]="{
+                    'is-invalid': assignedTo.invalid && (assignedTo.touched || form.submitted) && !formSubmittedSuccessfully,
+                    'is-valid': assignedTo.valid && assignedTo.touched
+                }">
+                <option *ngIf="todo.assignedTo" [value]="'none'">None</option>
+                <option *ngFor="let user of users" [ngValue]="user.id">{{ user.fullName }}</option>
+            </select>
+            <div *ngIf="assignedTo.invalid && (assignedTo.touched || form.submitted) && !formSubmittedSuccessfully" class="invalid-feedback">
+                Please assign the ToDo to someone.
+            </div>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Assign</button>
+    </form>
+</div>
