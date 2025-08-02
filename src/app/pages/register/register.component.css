@@ -1,7 +1,0 @@
-.was-validated .form-control.ng-invalid {
-    border-color: red;
-}
-
-.was-validated .form-control.ng-valid {
-    border-color: green;
-}

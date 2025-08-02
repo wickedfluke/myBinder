@@ -1,40 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './pages/login/login.component';
-import { authGuard } from './guards/auth.guard';
-import { TodoPageComponent } from './pages/todo-page/todo-page.component';
-import { TodoComponent } from './components/todo/todo.component';
-import { LoginGuard } from './guards/login.guard';
-import { RegisterComponent } from './pages/register/register.component';
+import { MyBinderComponent } from './pages/my-binder/my-binder.component';
 
 const routes: Routes = [
     {
         path: '',
-        redirectTo: '/todos',
+        redirectTo: '/myBinder',
         pathMatch: 'full'
     },
     {
-        path: 'login',
-        canActivate: [LoginGuard],
-        component: LoginComponent
+        path: 'myBinder',
+        component: MyBinderComponent
     },
-    {
-        path: 'register',
-        canActivate: [LoginGuard],
-        component: RegisterComponent
-    },
-    {
-        path: 'todos',
-        canActivate: [authGuard],
-        component: TodoPageComponent,
-        children: [
-            {
-                path: '',
-                component: TodoComponent,
-                runGuardsAndResolvers: 'paramsOrQueryParamsChange'
-            }
-        ]
-    }
 ];
 
 @NgModule({

@@ -5,30 +5,12 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { TodoComponent } from './components/todo/todo.component';
-import { TodoListComponent } from './components/todo-list/todo-list.component';
-import { TodoPageComponent } from './pages/todo-page/todo-page.component';
-import { LoginComponent } from './pages/login/login.component';
-import { NavUserComponent } from './components/nav-user/nav-user.component';
-import { IfAuthenticatedDirective } from './directives/if-authenticated.directive';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './utils/auth.interceptor';
-import { RegisterComponent } from './pages/register/register.component';
-import { AddTodoModalComponent } from './components/add-todo-modal/add-todo-modal.component';
-import { AssignTodoModalComponent } from './components/assign-todo-modal/assign-todo-modal.component';
+import { MyBinderComponent } from './pages/my-binder/my-binder.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        TodoComponent,
-        TodoListComponent,
-        TodoPageComponent,
-        LoginComponent,
-        NavUserComponent,
-        RegisterComponent,
-        AddTodoModalComponent,
-        AssignTodoModalComponent,
-        IfAuthenticatedDirective
+        MyBinderComponent
     ],
     imports: [
         BrowserModule,
@@ -39,7 +21,6 @@ import { AssignTodoModalComponent } from './components/assign-todo-modal/assign-
         NgbModule
     ],
     providers: [
-        {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     ],
     bootstrap: [AppComponent]
 })

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +6,5 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  currentUser$ = this.authSrv.currentUser$;
-
-  constructor(
-    private authSrv: AuthService
-  ) {}
-
-  logout() {
-    this.authSrv.logout();
-  }
+  title = 'myBinder';
 }
