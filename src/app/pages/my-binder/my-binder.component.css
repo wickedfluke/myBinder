@@ -1,0 +1,114 @@
+/* Wrapper principale: ora è il contenitore per i pulsanti laterali */
+.album-wrapper {
+    position: relative; /* Necessario per posizionare i pulsanti */
+    display: flex;
+    flex-direction: row; /* Allinea i pulsanti e l'album orizzontalmente */
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #3a3a3a;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+    user-select: none;
+}
+
+/* Contenitore dell'album (immutato) */
+.album-container {
+    perspective: 2500px;
+    -webkit-user-drag: none;
+}
+
+.album {
+    position: relative;
+    width: 85vw;
+    max-width: 480px;
+    aspect-ratio: 2 / 3;
+    transform-style: preserve-3d;
+}
+
+/* Stili pagina e griglia (immutati) */
+.page-container {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: #f0f2f5;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    padding: 20px; box-sizing: border-box;
+    transform-origin: left center;
+    transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+    backface-visibility: hidden;
+    display: flex; align-items: center; justify-content: center;
+}
+.page-container.page--flipped { transform: rotateY(-180deg); }
+.card-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr); gap: 15px;
+    width: 100%; height: 100%;
+}
+.card-slot {
+    background-color: rgba(0, 0, 0, 0.05); border-radius: 8px;
+    display: flex; justify-content: center; align-items: center;
+}
+.empty-slot { border: 2px dashed rgba(0, 0, 0, 0.2); }
+.card-image {
+    max-width: 100%; max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+}
+.card-image:hover { transform: scale(1.1); cursor: pointer; }
+
+
+/* --- Controlli di Navigazione (DESKTOP) --- */
+.nav-button {
+    background-color: rgba(255, 255, 255, 0.15);
+    border: none; border-radius: 50%;
+    width: 50px; height: 50px;
+    display: flex; justify-content: center; align-items: center;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    z-index: 100; /* Assicura che siano sopra ogni altro elemento */
+}
+
+/* Nasconde i pulsanti laterali su mobile di default */
+.prev-button, .next-button {
+    display: none;
+}
+
+.nav-button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+.nav-button:disabled {
+    color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.05);
+    cursor: not-allowed;
+    transform: scale(1);
+    opacity: 0.5;
+}
+
+/* --- Controlli di Navigazione (MOBILE) --- */
+.navigation-controls-mobile {
+    position: absolute;
+    bottom: 20px; /* Posizionati in basso */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80vw;
+    display: flex; /* Visibili su mobile */
+    justify-content: space-between;
+}
+
+/* --- Media Query per schermi grandi (PC) --- */
+@media (min-width: 768px) {
+    /* Nasconde i controlli mobili */
+    .navigation-controls-mobile {
+        display: none;
+    }
+    
+    /* Mostra e posiziona i controlli laterali */
+    .prev-button, .next-button {
+        display: flex;
+        margin: 0 20px; /* Spazio tra pulsanti e album */
+    }
+}
